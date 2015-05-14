@@ -10,11 +10,12 @@ Just need to pull docker container and run it.
 
     docker search PTL-lulzbot
     
-    docker pull "container you want"
+    docker pull posttenebraslab/ptl-lulzbot
     
-    docker run -v dir_with_stl_files:/home/ptl/ -v /dev/ttyACM0:/dev/ttyACM0 
-           ti --rm -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix PTL-lulzbot
+    docker run -v local_dir:/home/ptl/ -v /dev/ttyACM0:/dev/ttyACM0 \
+            --rm -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix \
+            posttenebraslab/ptl-lulzbot/ 
 
 
            
-select Lulzbot 4  and enjoy ;-)
+select Lulzbot TAZ 4  and enjoy ;-)
