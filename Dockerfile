@@ -19,6 +19,6 @@ RUN export uid=1000 gid=1000 && \
 RUN usermod -a -G tty ptl && \
     usermod -a -G dialout ptl
 
-    USER ptl
-    ENV HOME /home/ptl
-    CMD /usr/bin/cura
+USER ptl
+ENV HOME /home/ptl
+CMD /usr/bin/cura
