@@ -12,10 +12,10 @@ Just need to pull docker container and run it.
     
     docker pull posttenebraslab/ptl-lulzbot
     
-    docker run -v local_dir:/home/ptl/ -v /dev/ttyACM0:/dev/ttyACM0 \
-            --rm -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix \
+    docker run --rm -e DISPLAY=$DISPLAY \
+            -v $(pwd):/home/ptl/ \
+            -v /dev/ttyACM0:/dev/ttyACM0 \
+            -v /tmp/.X11-unix:/tmp/.X11-unix \
             posttenebraslab/ptl-lulzbot/ 
 
-
-           
-select Lulzbot TAZ 4  and enjoy ;-)
+select Lulzbot TAZ 4 and enjoy ;-)
