@@ -16,6 +16,6 @@ Just need to pull docker container and run it.
             -v $(pwd):/home/ptl/ \
             -v /dev/ttyACM0:/dev/ttyACM0 \
             -v /tmp/.X11-unix:/tmp/.X11-unix \
-            posttenebraslab/ptl-lulzbot/ 
+            posttenebraslab/ptl-lulzbot
 
 select Lulzbot TAZ 4 and enjoy ;-)
