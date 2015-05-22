@@ -4,8 +4,7 @@ RUN apt-get update && apt-get install wget --assume-yes
 
 RUN wget -qO - http://download.alephobjects.com/ao/aodeb/aokey.pub | sudo apt-key add - 
 RUN sed -i '$a deb http://download.alephobjects.com/ao/aodeb jessie main' /etc/apt/sources.list
-RUN apt-get update
-RUN apt-get install cura --assume-yes
+RUN apt-get update && apt-get install cura --assume-yes
 
 # Replace 1000 with your user / group id
 RUN export uid=1000 gid=1000 && \
@@ -19,6 +18,6 @@ RUN export uid=1000 gid=1000 && \
 RUN usermod -a -G tty ptl && \
     usermod -a -G dialout ptl
 
-    USER ptl
-    ENV HOME /home/ptl
-    CMD /usr/bin/cura
+USER ptl
+ENV HOME /home/ptl
+CMD /usr/bin/cura
