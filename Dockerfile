@@ -1,10 +1,17 @@
-FROM ubuntu:14.04
+FROM ubuntu:16.04
 
-RUN apt-get update && apt-get install wget --assume-yes
+RUN apt-get update && apt-get install -y \
+        wget \
+#        apt-transport-https \
+#       ca-certificates \
+        sudo
 
-RUN wget -qO - http://download.alephobjects.com/ao/aodeb/aokey.pub | sudo apt-key add - 
-RUN sed -i '$a deb http://download.alephobjects.com/ao/aodeb jessie main' /etc/apt/sources.list
-RUN apt-get update && apt-get install cura --assume-yes
+RUN sed -i '$a deb http://download.alephobjects.com/ao/aodeb jessie main' /etc/apt/sources.list && \
+        wget -qO - http://download.alephobjects.com/ao/aodeb/aokey.pub | apt-key add - 
+
+RUN apt-get update && apt-get install -y \
+        cura && \
+        rm -rf /var/lib/apt/lists/*
 
 # Replace 1000 with your user / group id
 RUN export uid=1000 gid=1000 && \
@@ -13,9 +20,10 @@ RUN export uid=1000 gid=1000 && \
     echo "ptl:x:${uid}:" >> /etc/group && \
     echo "ptl ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/ptl && \
     chmod 0440 /etc/sudoers.d/ptl && \
-    chown ${uid}:${gid} -R /home/ptl
-
-RUN usermod -a -G tty ptl && \
+    mkdir /home/ptl/Documents && \
+    mkdir /home/ptl/.cura && \
+    chown ${uid}:${gid} -R /home/ptl &&\
+    usermod -a -G tty ptl && \
     usermod -a -G dialout ptl
 
 USER ptl
