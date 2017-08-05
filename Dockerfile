@@ -22,10 +22,11 @@ RUN export uid=1000 gid=1000 && \
     chmod 0440 /etc/sudoers.d/ptl && \
     mkdir /home/ptl/Documents && \
     mkdir /home/ptl/.cura && \
+    mkdir /home/ptl/.local && \
     chown ${uid}:${gid} -R /home/ptl &&\
     usermod -a -G tty ptl && \
     usermod -a -G dialout ptl
 
 USER ptl
 ENV HOME /home/ptl
-CMD /usr/bin/cura
+CMD /usr/bin/cura /home/ptl/Documents
